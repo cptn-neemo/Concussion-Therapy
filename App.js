@@ -35,7 +35,6 @@ export default class App extends React.Component {
   }
 
   onButtonPress() {
-    //Alert.alert('You tapped continue');
     this.setState(prevState => ({
       progress: 0,
       level: prevState.level + 1,
@@ -91,7 +90,7 @@ export default class App extends React.Component {
     if (this.state.isOnTitle) {
       return (
         <View style={styles.mainView}>
-          <Text style = {styles.titleText}>Concussion Therapy</Text>
+          <Text style = {styles.introText}>It's Not Just Aphasia</Text>
         </View>
       );
     }
@@ -242,6 +241,12 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 60,
     color: 'white',
+    textAlign: 'center'
+  },
+
+  introText: {
+    fontSize: 60,
+    color: 'orange',
     textAlign: 'center'
   }
 });
