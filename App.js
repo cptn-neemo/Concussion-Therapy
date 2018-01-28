@@ -25,9 +25,9 @@ export default class App extends React.Component {
       this.setState({isOnTitle: false})
     }, 3000);
 
-        var timer = setInterval(() => {
-          this.getUserInformation();
-        }, 1000 ); 
+    var timer = setInterval(() => {
+      this.getUserInformation();
+    }, 1000 ); 
   }
 
   changeScreen() {
@@ -109,19 +109,17 @@ export default class App extends React.Component {
           <Text style = {styles.questionText}>
             Questions Answered: {this.state.score / 10}
           </Text>
-
-          <View style = {styles.buttonView}>
               
-            <Button
-                large
-                rounded
-                onPress={() => this.accountButtonPress()}
-                textStyle = {styles.buttonText}
-                buttonStyle = {styles.button}
-                iconRight={{name: 'backspace'}}
-                title='Back to Questions' />
+          <Button
+            large
+            rounded
+            onPress={() => this.accountButtonPress()}
+            textStyle = {styles.buttonText}
+            buttonStyle = {styles.insideButton}
+            containerViewStyle = {styles.button}
+            iconRight={{name: 'backspace'}}
+            title='Back to Questions' />
 
-          </View>
         </View>
       );
     }
@@ -138,18 +136,19 @@ export default class App extends React.Component {
               value = {this.state.progress * 100 + '%'}
               wrapperStyle = {styles.badge}/>
 
-            <View style = {styles.buttonView}>
+
 
               <Button
                 large
                 rounded
                 onPress={() => this.accountButtonPress()}
                 textStyle = {styles.buttonText}
-                buttonStyle = {styles.button}
+                buttonStyle ={styles.insideButton}
+                containerViewStyle = {styles.button}
                 iconRight={{name: 'account-box'}}
                 title='My Progress' />
 
-            </View>
+
           </View>
         );
 
@@ -167,7 +166,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#525252',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    justifyContent: 'center',
+    
   },
 
   badgeText:  {
@@ -198,7 +197,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 35,
     textAlign: 'center',
-    padding: '10%'
+    padding: '5%'
   },
 
   progressText: {
@@ -208,8 +207,13 @@ const styles = StyleSheet.create({
 
   button: {
     alignItems: 'center',
-    backgroundColor: '#252526',
-    padding: '5%',
+    paddingTop: '10%',
+    position: 'absolute',
+    bottom: 15
+  },
+
+  insideButton: {
+    backgroundColor: '#252526'
   },
 
   mainView: {
@@ -229,8 +233,10 @@ const styles = StyleSheet.create({
   },
 
   levelView: {
-    paddingBottom: '5%',
-    paddingTop: '10%'
+    marginBottom: 5,
+    marginTop: 10,
+    paddingBottom: '10%',
+    paddingTop: '5%'
   },
 
   titleText: {
