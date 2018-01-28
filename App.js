@@ -51,17 +51,34 @@ export default class App extends React.Component {
 
       let level = Math.floor(responseJSON.score / 50) + 1;
       let prog = (responseJSON.score % 50) / 50.0;
+      let useName = '';
+      let lastQuest = '';
+      let score = 0;
+
+
       console.log('level: ' + level);
       console.log('prog: ' + prog);
+      
+      if (responseJSON.userName == null && responseJSON.score == null) {
 
-      this.setState({
-        score: responseJSON.score,
-        userName: responseJSON.username,
-        question: responseJSON.lastQuestion,
-        progress: prog,
-        level: level
-      });
-    })
+        this.setState({
+          score: 0,
+          userName: 'notFound',
+          question: 'notFound',
+          progress: 0,
+          level: 0
+        });
+      }
+      else {
+        this.setState({
+          score: responseJSON.score,
+          userName: responseJSON.username,
+          question: responseJSON.lastQuestion,
+          progress: prog,
+          level: level
+        });
+      }
+     })
   }
 
   accountButtonPress() {
@@ -167,8 +184,9 @@ const styles = StyleSheet.create({
 
   questionText: {
     color: 'white',
-    fontSize: 30,
+    fontSize: 35,
     textAlign: 'center',
+    padding: '10%'
   },
 
   progressText: {
@@ -190,7 +208,7 @@ const styles = StyleSheet.create({
   },
 
   buttonView: {
-    paddingTop: '20%',
+    paddingTop: '15%',
     alignSelf: 'stretch'
   },
 
