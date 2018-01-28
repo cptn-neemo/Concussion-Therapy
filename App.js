@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Button, Alert, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Image, Alert, TouchableOpacity} from 'react-native';
 import CurrentLevelButton from './CurrentLevelButton.js';
+import {Badge, Divider, Button} from 'react-native-elements'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,9 +25,9 @@ export default class App extends React.Component {
       this.setState({isOnTitle: false})
     }, 3000);
 
-     var timer = setInterval(() => {
-       this.getUserInformation();
-     }, 1000 ); 
+       var timer = setInterval(() => {
+         this.getUserInformation();
+       }, 1000 ); 
   }
 
   changeScreen() {
@@ -60,11 +61,10 @@ export default class App extends React.Component {
       console.log('prog: ' + prog);
       
       if (responseJSON.userName == null && responseJSON.score == null) {
-
         this.setState({
           score: 0,
-          userName: 'notFound',
-          question: 'notFound',
+          userName: 'Error',
+          question: 'Error: No Connection',
           progress: 0,
           level: 0
         });
@@ -112,12 +112,14 @@ export default class App extends React.Component {
 
           <View style = {styles.buttonView}>
               
-            <TouchableOpacity
-               style={styles.button}
-               onPress={() => this.accountButtonPress()}
-            >
-              <Text style = {styles.buttonText}> Back to Questions </Text>
-            </TouchableOpacity>
+            <Button
+                large
+                rounded
+                onPress={() => this.accountButtonPress()}
+                textStyle = {styles.buttonText}
+                buttonStyle = {styles.button}
+                iconRight={{name: 'backspace'}}
+                title='Back to Questions' />
 
           </View>
         </View>
@@ -132,17 +134,20 @@ export default class App extends React.Component {
 
             <Text style = {styles.questionText}>{this.state.question}</Text>
             <CurrentLevelButton progress ={this.state.progress}/>
-            <Text style = {styles.progressText}>
-              Progress on this level: {this.state.progress * 100}%
-            </Text>
+            <Badge textStyle = {styles.buttonText}
+              value = {this.state.progress * 100 + '%'}
+              wrapperStyle = {styles.badge}/>
+
             <View style = {styles.buttonView}>
-              
-              <TouchableOpacity
-                style={styles.button}
+
+              <Button
+                large
+                rounded
                 onPress={() => this.accountButtonPress()}
-              >
-                <Text style = {styles.buttonText}> My Progress </Text>
-              </TouchableOpacity>
+                textStyle = {styles.buttonText}
+                buttonStyle = {styles.button}
+                iconRight={{name: 'account-box'}}
+                title='My Progress' />
 
             </View>
           </View>
@@ -164,6 +169,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
 
+  badgeText:  {
+    color: 'orange',
+    fontSize: 60
+  },
+
   mainText: {
     color: 'white',
     fontWeight: 'bold',
@@ -179,7 +189,8 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    fontSize: 35
+    fontSize: 35,
+    color: 'orange'
   },
 
   questionText: {
@@ -196,7 +207,7 @@ const styles = StyleSheet.create({
 
   button: {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
+    backgroundColor: '#252526',
     padding: '10%',
   },
 
@@ -210,6 +221,10 @@ const styles = StyleSheet.create({
   buttonView: {
     paddingTop: '15%',
     alignSelf: 'stretch'
+  },
+
+  badge: {
+    paddingTop: '5%'
   },
 
   levelView: {
