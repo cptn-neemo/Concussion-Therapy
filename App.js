@@ -85,13 +85,25 @@ export default class App extends React.Component {
           <View style = {styles.levelView}>
             <Text style={styles.levelText}>{this.state.userName}</Text>
           </View>
-          <Button
-            onPress = {() => this.accountButtonPress()}
-            title = "Back to Questions"
-            color = "#6d6868"
-            style = {styles.button}
-            raised = {true}
-          />
+
+          <Text style = {styles.questionText}>
+            Total Score: {this.state.score}
+          </Text>
+
+          <Text style = {styles.questionText}>
+            Questions Answered: {this.state.score / 10}
+          </Text>
+
+          <View style = {styles.buttonView}>
+              
+            <TouchableOpacity
+               style={styles.button}
+               onPress={() => this.accountButtonPress()}
+            >
+              <Text style = {styles.buttonText}> Back to Questions </Text>
+            </TouchableOpacity>
+
+          </View>
         </View>
       );
     }
@@ -151,7 +163,7 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    fontSize: 20
+    fontSize: 35
   },
 
   questionText: {
@@ -168,7 +180,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
-    padding: '10%'
+    padding: '10%',
   },
 
   mainView: {
