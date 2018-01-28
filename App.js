@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Animated} from 'react-native';
+import CurrentLevelButton from './CurrentLevelButton.js';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -32,6 +33,7 @@ export default class App extends React.Component {
       return(
         <View style = {styles.container}>
           <Text>This is not the title screen</Text>
+          <CurrentLevelButton/>
         </View>
       );
     }
