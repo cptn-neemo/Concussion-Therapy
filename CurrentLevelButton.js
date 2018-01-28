@@ -12,9 +12,9 @@ class CurrentLevelButton extends React.Component {
 	render() {
 		return(
 			<View>
-				<ProgressBar width = {300} height = {30}
+				<ProgressBar width = {350} height = {60}
 					progress = {this.props.progress}
-					color = '#2c7c18'/>
+					color = '#1fa83f'/>
 
 			</View>
 		);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Alert, TouchableOpacity} from 'react-native';
 import CurrentLevelButton from './CurrentLevelButton.js';
-import {Badge, Divider, Button} from 'react-native-elements'
+import {Badge, Divider, Button, Card} from 'react-native-elements'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -25,9 +25,9 @@ export default class App extends React.Component {
       this.setState({isOnTitle: false})
     }, 3000);
 
-       var timer = setInterval(() => {
-         this.getUserInformation();
-       }, 1000 ); 
+        var timer = setInterval(() => {
+          this.getUserInformation();
+        }, 1000 ); 
   }
 
   changeScreen() {
@@ -91,7 +91,7 @@ export default class App extends React.Component {
     if (this.state.isOnTitle) {
       return (
         <View style={styles.mainView}>
-          <Text style = {styles.mainText}>Concussion Therapy</Text>
+          <Text style = {styles.titleText}>Concussion Therapy</Text>
         </View>
       );
     }
@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#525252',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    justifyContent: 'center',
   },
 
   badgeText:  {
@@ -208,7 +209,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     backgroundColor: '#252526',
-    padding: '10%',
+    padding: '5%',
   },
 
   mainView: {
@@ -228,7 +229,13 @@ const styles = StyleSheet.create({
   },
 
   levelView: {
-    paddingBottom: '10%',
-    paddingTop: '20%'
+    paddingBottom: '5%',
+    paddingTop: '10%'
+  },
+
+  titleText: {
+    fontSize: 60,
+    color: 'white',
+    textAlign: 'center'
   }
 });
