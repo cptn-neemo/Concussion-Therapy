@@ -8,13 +8,34 @@ export default class App extends React.Component {
 
     this.state = {
       isOnTitle: true,
+      level: 1,
+      progress: .1
     }
   }
 
   componentDidMount() {
-    if (this.state.isOnTitle) {
-      this.timerID = setInterval(() => this.changeScreen(), 3000);
-    }
+    // if (this.state.isOnTitle) {
+    //   this.timerID = setInterval(() => this.changeScreen(), 3000);
+    // }
+    // else {
+    //   setInterval(() => this.refreshProgress(), 1000);
+    // }
+
+    setTimeout(() => {
+      this.setState({isOnTitle: false})
+    }, 3000);
+
+    var timer = setInterval(() => {
+      if (this.state.progress < 1) {
+        this.setState(prevState => ({
+          progress: prevState.progress + .1
+        }));
+      }
+      else {
+        clearInterval(timer);
+      }
+
+    }, 1000); 
   }
 
   changeScreen() {
@@ -32,8 +53,9 @@ export default class App extends React.Component {
     else {
       return(
         <View style = {styles.container}>
-          <Text>This is not the title screen</Text>
-          <CurrentLevelButton/>
+          <Text style = {styles.levelText}>Level: {this.state.level}</Text>
+          <CurrentLevelButton progress ={this.state.progress}/>
+          <Text>{this.state.progress}</Text>
         </View>
       );
     }
@@ -53,5 +75,11 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 30
+  },
+
+  levelText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 45
   }
 });
