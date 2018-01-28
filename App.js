@@ -24,9 +24,9 @@ export default class App extends React.Component {
       this.setState({isOnTitle: false})
     }, 3000);
 
-    var timer = setInterval(() => {
-      this.getUserInformation();
-    }, 1000); 
+     var timer = setInterval(() => {
+       this.getUserInformation();
+     }, 1000 ); 
   }
 
   changeScreen() {
@@ -49,9 +49,8 @@ export default class App extends React.Component {
       console.log('User score: ' + responseJSON.score);
       console.log('Username: ' + responseJSON.username);
 
-      let level = Math.floor(responseJSON.score / 50);
+      let level = Math.floor(responseJSON.score / 50) + 1;
       let prog = (responseJSON.score % 50) / 50.0;
-
       console.log('level: ' + level);
       console.log('prog: ' + prog);
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Animated, ProgressViewIOS} from 'react-native';
+import ProgressBar from 'react-native-progress/Bar';
 
 
 class CurrentLevelButton extends React.Component {
@@ -9,9 +10,10 @@ class CurrentLevelButton extends React.Component {
 
 	render() {
 		return(
-			<ProgressViewIOS progress = {this.props.progress} 
-				style = {styles.progressBar}
-				progressTintColor = 'green'/>
+			<View>
+				<ProgressBar width = {300} height = {30}
+					progress = {this.props.progress}/>
+			</View>
 		);
 	}
 		
@@ -19,7 +21,7 @@ class CurrentLevelButton extends React.Component {
 
 let styles = StyleSheet.create({
 	progressBar: {
-		width: 300,
+		width: null,
 		height: 100
 	}
 });
